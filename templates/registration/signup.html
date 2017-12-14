@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+    <title>Signup</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}" />
+    <meta name="robots" content="NONE,NOARCHIVE" />
+    <style>
+        .login .form-row #id_first_name, .login .form-row #id_last_name, .login .form-row #id_email {
+            clear: both;
+            padding: 8px;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+
+        .form-row input[type=file] {
+            align-items: flex-start;
+            background: #79aec8;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body class="login" data-admin-utc-offset="0">
+
+    <div id="container">
+
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name">Signup</h1>
+            </div>
+        </div>
+
+        <div id="content" class="colM">
+            <div id="content-main">
+                <form action="{% url 'signup' %}" enctype="multipart/form-data" method="post" id="signup-form">
+                    {% csrf_token %}
+                      <div class="form-row">
+                          <label class="required">First name:</label> {{ form.first_name }}
+                          {% if form.first_name.errors %}
+                            <label class="required">{{ form.first_name.errors }}</label>
+                          {% endif %}
+                      </div>
+                  <div class="form-row">
+                    <label class="required">Last name:</label> {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <label class="required">{{ form.last_name.errors }}</label>
+                    {% endif %}
+                  </div>
+                      <div class="form-row">
+                        <label class="required" for="id_username">Username:</label> {{ form.username }}
+                      {% if form.username.errors %}
+                        <label class="required">{{ form.username.errors }}</label>
+                      {% endif %}
+                      </div>
+                          <div class="form-row">
+                    <label class="required" for="id_password">Password:</label> {{ form.password }}
+                      {% if form.password.errors %}
+                        <label class="required">{{ form.password.errors }}</label>
+                      {% endif %}
+                  </div>
+                  <div class="form-row">
+                      <label class="required">Email:</label> {{ form.email }}
+                      {% if form.email.errors %}
+                        <label class="required">{{ form.email.errors }}</label>
+                      {% endif %}
+                  </div>
+                    <div class="form-row">
+                        <label class="required" for="id_profile_pic">Upload a profile picture: </label> {{ form.profile_pic }}
+                          {% if form.profile_pic.errors %}
+                            <label class="required">{{ form.profile_pic.errors }}</label>
+                          {% endif %}
+                    </div>
+                  <div class="submit-row">
+                    <label>&nbsp;</label><input type="submit" value="Log in" />
+                  </div>
+                </form>
+            </div>
+
+
+            <br class="clear" />
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    </body>
+</html>
